@@ -1,4 +1,4 @@
-let test = require('./q1')
+let array = require('./q1')
 
-test.odd(test.arr);
-test.even(test.arr);
+array.odd(test.arr);
+array.even(test.arr);
