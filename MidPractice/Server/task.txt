@@ -1,0 +1,17 @@
+Use express.js framework to implement a web application which has the following features:
+
+User makes a request to http://localhost:8080/, the browser displays a page with a signup form which has two inputs: firstname and lastname, and 1 submit button.
+When user clicks submit button in the browser, browser makes a POST request to http://localhost:8080/signup URL. On the server side, 
+the web application gets user’s the inputs(firstname and lastname), then stored in the database.txt file, should append not replace.
+If firstname or lastname is empty, goes back to signup form with error message: "Firstname and lastname are required".
+If stored successfully, display “saved successfully” message in the browser.
+If stored failed, display “saved failed” message in the browser.
+
+When you store user's info, The format of database.txt file looks like below:
+
+john=smith,Bella=Lord,Edward=Hopkins
+
+
+NOTE: It’s your own choice use html file, then read the html file and send back. Or you send strings directly to the browser.
+
+You’re free to import other modules you need. You’re free to use Router class too.
