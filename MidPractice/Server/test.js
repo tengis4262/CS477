@@ -2,29 +2,44 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
+
 const app = express();
-const dataBase = 'database1.txt';
+const dataBase = 'database.txt';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+let filename = path.join(__dirname,'database.txt');
+
+let data = fs.readFileSync(filename, 'utf8');
+let datas = data.split(',');
+console.log(data.split(','));
+
+// get - fetch data
+// post - insert data
+// patch - update data
+// delete - delete data
+
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    // const username = req.params.username;
+    res.sendFile((__dirname + '/index.html'));
 });
 
-app.post('/signup', (req, res) => {
-    const {fname, lname} = req.body
-    if (!fname || !lname) {
+app.post('/login', (req, res) => {
+    const {username, password} = req.body
+    if (!username || !password) {
         res.status(400).send('Firstname and lastname are required');
+        // res.json({message: "Saved Successfully"})
     } else {
-        const userData = `${fname}=${lname},`;
-        fs.appendFile(dataBase, userData, (err) => {
-            if (err) {
-                res.status(500).send('Failed to save user information');
-            } else {
-                res.status(200).send('Saved successfully');
-            }
-        })
+        const userData = `${username}=${password}`;
+        if (datas.indexOf(userData) != -1) {
+            res.status(200).send(`welcome ${username}`);
+
+        } else {
+            res.status(400).send('password incorrect');
+
+        }
     }
 
 })
